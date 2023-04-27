@@ -1,0 +1,61 @@
+n = int(input())
+lst1 = []
+lst2 = []
+for i in range(n):
+    lst1.append([0]*n)
+    lst2.append([0]*n)
+for i in range(n):
+    for j in range(n):
+        lst1[i][j] = int(input())
+for i in range(n):
+    print(lst1[i])
+print()
+
+sm = 0
+while(n!=2):
+    
+    for i in range(n):
+        sm += min(lst1[i])
+        mn = min(lst1[i])
+        for j in range(len(lst1[i])):
+            lst1[i][j] -= mn
+
+    for i in range(n):
+        mn = lst1[0][0]
+        for j in range(n):
+            mn = min(mn, lst1[j][i])
+        sm += mn
+        for j in range(n):
+            lst1[j][i] -= mn
+
+    print()
+
+    mx_i = 0
+    mx_j = 0
+    mx_o = -1
+    for i in range(n):
+        for j in range(n):
+            if lst1[i][j] == 0:
+                mn_i=min(lst1[i][:j]+lst1[i][j+1:])
+                lst_j=[]
+                for i2 in range(n):
+                    if i2!=i:
+                        lst_j.append(lst1[i2][j])
+                if mn_i+min(lst_j)>mx_o:
+                    mx_i = i
+                    mx_j = j
+                    mx_o = mn_i+min(lst_j)
+
+
+
+    lst1[mx_j][mx_i]=999
+    for i in range(n):
+        del lst1[i][mx_j]
+    del lst1[mx_i]
+
+    n-=1
+    
+print("sm: ", sm)
+                    
+            
+        
