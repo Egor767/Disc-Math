@@ -1,6 +1,8 @@
 n = int(input())
 lst1 = []
 lst2 = []
+
+rib = []
 for i in range(n):
     lst1.append([0]*n)
     lst2.append([0]*n)
@@ -47,7 +49,10 @@ while(n!=2):
                     mx_o = mn_i+min(lst_j)
 
 
-
+    rib.append([mx_i, mx_j])
+    for i in range(len(rib)):
+        if rib[i][1] == mx_i:
+            lst1[mx_j][i] == 999
     lst1[mx_j][mx_i]=999
     for i in range(n):
         del lst1[i][mx_j]
