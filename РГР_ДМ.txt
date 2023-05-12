@@ -1,0 +1,52 @@
+import os
+clear = lambda: os.system('cls')
+clear()
+s = 0
+while (s!=3):
+    clear()
+    print("1. Решение задачи")
+    print("2. Об Авторе")
+    print("3. Выход...")
+    s = int(input())
+        
+    if s == 1:
+        with open("C:/test.txt", "r" ) as f:
+            n, m =map(int, f.readline().split())  
+            metro=[]
+            for i in range(m):
+                a, b = map(int, f.readline().split())
+                metro.append([a, b])
+            
+            ribs = [metro[0]]
+            prima = [metro[0][0], metro[0][1]]
+            
+            while len(prima)!=n:
+                for i in range(m):
+                    if (metro[i][0] in prima) and (metro[i][1] in prima):
+                        pass
+
+                    else:
+                        if (metro[i][0] in prima) and (not (metro[i][1] in prima) ):
+                            prima.append(metro[i][1])
+                            ribs.append(metro[i])
+
+                        elif not( (metro[i][0] in prima) ) and (metro[i][1] in prima):
+                            prima.append(metro[i][1])
+                            ribs.append(metro[i])
+        
+            print("Порядок закрытия веток: ")
+            k=0
+            for i in metro:
+                if not(i in ribs):
+                    print(i[0], i[1])
+                    k+=1
+            print("k =", k)
+    elif s == 2:
+        print("Работу выполнил:")
+        print("Студент гр.МО-221 Мусияк Егор")
+        print("Контакты: mm.yegor@mail.ru")
+        print()
+        print("Для выхода нажмите любую кнопку...")
+    elif s == 3:
+        break
+    clear()
